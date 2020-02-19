@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:vm="clr-namespace:XamaRead.ViewModels"
+                  xmlns:prism="http://prismlibrary.com"
+                  prism:ViewModelLocator.AutowireViewModel="True"
+                  x:Class="XamaRead.Views.StartPage"  x:Name="startPage">
+
+    <MasterDetailPage.Master>
+        <ContentPage BindingContext="{Binding Menu}" Title="{Binding BindingContext.Title, Source={x:Reference startPage}}">
+            <Grid x:DataType="vm:MenuViewModel" BackgroundColor="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Padding="20">
+                    <Label Style="{StaticResource Hyperlink}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Home">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ShowWelcomeCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Style="{StaticResource Hyperlink}" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Search">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ShowSearchCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+</MasterDetailPage>
