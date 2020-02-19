@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using XamaRead.Interfaces;
+using XamaRead.Services;
 using XamaRead.ViewModels;
 using XamaRead.Views;
 using Xamarin.Forms;
@@ -28,10 +30,15 @@ namespace XamaRead
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Services
+            containerRegistry.Register<IBookService, BookService>();
+
+            // Navigation
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>();
             containerRegistry.RegisterForNavigation<StartPage, StartPageViewModel>();
             containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<BookDetailsPage, BookDetailsPageViewModel>();
         }
     }
 }

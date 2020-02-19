@@ -1,9 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:res="clr-namespace:XamaRead.Resources"
-             xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
-             x:Class="XamaRead.App">
+<prism:PrismApplication
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:res="clr-namespace:XamaRead.Resources"
+    xmlns:conv="clr-namespace:XamaRead.Converters"
+    xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
+    x:Class="XamaRead.App">
     <Application.Resources>
 
         <ResourceDictionary>
@@ -12,6 +14,8 @@
                 <res:LightTheme />
             </ResourceDictionary.MergedDictionaries>
 
+            <conv:EllipsisConverter x:Key="EllipsisConverter"/>
+            
             <Style TargetType="Label" x:Key="Hyperlink">
                 <Setter Property="TextDecorations" Value="Underline" />
                 <Setter Property="BackgroundColor" Value="{StaticResource StandardBackground}" />

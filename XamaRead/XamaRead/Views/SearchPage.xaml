@@ -1,8 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:vm="clr-namespace:XamaRead.ViewModels"
+             xmlns:m="clr-namespace:XamaRead.Models"
+             Title="{Binding Title}"
+             x:DataType="vm:SearchPageViewModel"
              x:Class="XamaRead.Views.SearchPage">
-  
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <SearchBar Placeholder="Suchtext" Text="{Binding SearchText}" SearchCommand="{Binding SearchCommand}"/>
+        <Label Text="{Binding ResultInfo}" Grid.Row="1"/>
+        <ListView ItemsSource="{Binding Results}" Grid.Row="2" HasUnevenRows="True" SelectedItem="{Binding CurrentBook, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:Book">
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image VerticalOptions="StartAndExpand" Source="{Binding Info.ImageLinks.SmallThumbnail}" />
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding Info.Title}" Style="{StaticResource TitleLabel}"/>
+                                <Label Text="{Binding Info.Description, Converter={StaticResource EllipsisConverter}, ConverterParameter=300}" 
+                                       Style="{StaticResource BodyLabel}"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

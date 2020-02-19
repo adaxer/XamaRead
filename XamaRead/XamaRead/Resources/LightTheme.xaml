@@ -5,4 +5,21 @@
     <Color x:Key="StandardBackground" >
         #DDDDDD
     </Color>
+
+    <Style TargetType="Grid">
+        <Setter Property="Margin" Value="10" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="TitleLabel" >
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="BodyLabel" BasedOn="Label">
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style TargetType="Label" >
+        <Setter Property="TextColor" Value="#247" />
+    </Style>
 </ResourceDictionary>
