@@ -36,6 +36,9 @@ namespace XamaRead
             containerRegistry.Register<IDataService, DataService>();
             containerRegistry.Register<IShareBooks, ShareBooks>();
 
+            // Dialog
+            containerRegistry.RegisterDialog<EnterTextDialog, EnterTextViewModel>();
+
             // Navigation
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<WelcomePage, WelcomePageViewModel>();

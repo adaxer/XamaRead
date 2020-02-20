@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XamaRead.ViewModels" BackgroundColor="White" Padding="20" Spacing="8"
+             x:DataType="vm:EnterTextViewModel" MinimumWidthRequest="300" HorizontalOptions="Center" VerticalOptions="Center"
+             x:Class="XamaRead.Views.EnterTextDialog">
+
+    <Label Text="{Binding Title}" />
+    <Entry Text="{Binding Value}" />
+    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+        <Button Text="Ok" MinimumWidthRequest="100" Command="{Binding OkCommand}" />
+        <Button Text="Cancel" MinimumWidthRequest="100" Command="{Binding CancelCommand}" />
+    </StackLayout>
+</StackLayout>
