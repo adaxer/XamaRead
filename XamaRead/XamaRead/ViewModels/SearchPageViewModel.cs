@@ -25,7 +25,7 @@ namespace XamaRead.ViewModels
         #region Initialization
         public SearchPageViewModel(INavigationService navigationService, IBookService bookService) : base(navigationService)
         {
-            Title = "Search";
+            Title = "Suche";
             this._bookService = bookService;
         }
 

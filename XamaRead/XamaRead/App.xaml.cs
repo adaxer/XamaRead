@@ -34,6 +34,7 @@ namespace XamaRead
             containerRegistry.Register<IBookService, BookService>();
             containerRegistry.Register<IRestService, RestService>();
             containerRegistry.Register<IDataService, DataService>();
+            containerRegistry.Register<IShareBooks, ShareBooks>();
 
             // Navigation
             containerRegistry.RegisterForNavigation<NavigationPage>();

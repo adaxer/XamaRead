@@ -14,11 +14,13 @@ namespace XamaRead.ViewModels
     public class BookDetailsPageViewModel : ViewModelBase
     {
         private readonly IBookService _bookService;
+        private readonly IShareBooks _shareBooks;
         private Book _currentBook;
 
-        public BookDetailsPageViewModel(INavigationService navigationService, IBookService bookService) : base(navigationService)
+        public BookDetailsPageViewModel(INavigationService navigationService, IBookService bookService, IShareBooks shareBooks) : base(navigationService)
         {
             _bookService = bookService;
+            this._shareBooks = shareBooks;
         }
 
         public override async void OnNavigatedTo(INavigationParameters parameters)
@@ -51,7 +53,7 @@ namespace XamaRead.ViewModels
 
         private async void Upload()
         {
-            await _bookService.UploadBookAsync(CurrentBook, $"Saved by me on {DateTime.Now}");
+            await _shareBooks.ShareBook(CurrentBook);
         }
     }
 }

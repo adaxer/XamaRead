@@ -15,7 +15,7 @@
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
-    <Style TargetType="Label" x:Key="BodyLabel" BasedOn="Label">
+    <Style TargetType="Label" x:Key="BodyLabel" >
         <Setter Property="FontSize" Value="14" />
     </Style>
 
