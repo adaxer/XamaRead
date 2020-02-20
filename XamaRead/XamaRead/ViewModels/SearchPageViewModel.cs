@@ -1,11 +1,13 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using XamaRead.Interfaces;
 using XamaRead.Models;
 using XamaRead.Views;
+using Xamarin.Essentials;
 
 namespace XamaRead.ViewModels
 {
@@ -25,6 +27,16 @@ namespace XamaRead.ViewModels
         {
             Title = "Search";
             this._bookService = bookService;
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            if(Preferences.ContainsKey("LastQuery"))
+            {
+                SearchText = Preferences.Get("LastQuery", "");
+                DoSearch();
+            }
         }
         #endregion
 
@@ -78,6 +90,7 @@ namespace XamaRead.ViewModels
             {
                 Results.Add(book);
             }
+            Preferences.Set("LastQuery", SearchText);
         }
 
         #endregion

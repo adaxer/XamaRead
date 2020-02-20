@@ -3,7 +3,9 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Windows.Input;
 using XamaRead.Interfaces;
 using XamaRead.Models;
 
@@ -27,6 +29,8 @@ namespace XamaRead.ViewModels
                 var result = await _bookService.GetBookDetailsAsync(id);
                 CurrentBook = result.book;
                 Title = $"{CurrentBook.Info.Title} ({result.notes})";
+                //var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "lastbook.txt");
+                //File.WriteAllText(path, id);
             }
         }
 
@@ -34,6 +38,20 @@ namespace XamaRead.ViewModels
         {
             get { return _currentBook; }
             set { SetProperty(ref _currentBook, value); }
+        }
+
+        public ICommand SaveCommand => new DelegateCommand(Save);
+
+        public ICommand UploadCommand => new DelegateCommand(Upload);
+
+        private async void Save()
+        {
+            await _bookService.SaveBookAsync(CurrentBook, $"Saved by me on {DateTime.Now}");
+        }
+
+        private async void Upload()
+        {
+            await _bookService.UploadBookAsync(CurrentBook, $"Saved by me on {DateTime.Now}");
         }
     }
 }

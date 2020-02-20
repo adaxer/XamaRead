@@ -22,4 +22,8 @@
     <Style TargetType="Label" >
         <Setter Property="TextColor" Value="#247" />
     </Style>
+
+    <Style TargetType="VisualElement" Class="Error">
+        <Setter Property="BackgroundColor" Value="Red" />
+    </Style>
 </ResourceDictionary>

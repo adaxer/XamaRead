@@ -1,8 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com" Title="{Binding Title}"
-             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:vm="clr-namespace:XamaRead.ViewModels"
+             Title="{Binding Title}"
+             x:DataType="vm:BookDetailsPageViewModel"
              x:Class="XamaRead.Views.BookDetailsPage">
-  
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="{Binding CurrentBook.Info.ImageLinks.Thumbnail}" VerticalOptions="Start"/>
+        <StackLayout Grid.Column="1">
+            <Label Text="{Binding CurrentBook.Info.AuthorInfo}" Style="{DynamicResource TitleLabel}" >
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding CurrentBook.Info.AuthorInfo}" Value="n.n." >
+                        <Setter  Property="Text" Value="No Author" />
+                        <Setter Property="BackgroundColor" Value="Red" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Text="{Binding CurrentBook.Info.Description}" Style="{StaticResource BodyLabel}" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="Center">
+            <Button Text="Lokal Merken" Command="{Binding SaveCommand}"/>
+            <Button Text="Als Favorit speichern" Command="{Binding UploadCommand}"/>
+        </StackLayout>
+    </Grid>
 </ContentPage>

@@ -25,7 +25,8 @@
                             </Grid.ColumnDefinitions>
                             <Image VerticalOptions="StartAndExpand" Source="{Binding Info.ImageLinks.SmallThumbnail}" />
                             <StackLayout Grid.Column="1">
-                                <Label Text="{Binding Info.Title}" Style="{StaticResource TitleLabel}"/>
+                                <Label Text="{Binding Info.Title}" Style="{StaticResource TitleLabel}" />
+                                <Label Text="{Binding Info.AuthorInfo}" Style="{StaticResource BodyLabel}" />
                                 <Label Text="{Binding Info.Description, Converter={StaticResource EllipsisConverter}, ConverterParameter=300}" 
                                        Style="{StaticResource BodyLabel}"/>
                             </StackLayout>
